@@ -5,24 +5,33 @@ import {
   NavLink,
   HashRouter
 } from "react-router-dom";
-//import {syncHistoryWithStore} from 'react-router-redux';
 
 import Login from './pages/login';
 import Register from './pages/register';
 
 class App extends Component {
-    addBook(){
-      this.props.onAddBook(this.bookInput.value);
-      this.bookInput.value = '';
-    }
     render(){
+        const Authorization = () =>{
+         let isAuthorize = sessionStorage.getItem('TokenInfo');
+         let userName = sessionStorage.getItem('username');
+          if(this.props.user.authenticated){
+              return(
+                  <li><NavLink to="/profile">{userName}</NavLink></li>,
+                  <li><NavLink to="/logout">Logout</NavLink></li>
+              )
+          }
+          else {
+              return(
+                  <li><NavLink to="/login">Login</NavLink></li>
+              )
+          }
+      }
       return(
         <HashRouter>
         <div>
           <ul className="header">
             <li><NavLink exact to="/">Home</NavLink></li>
-            <li><NavLink to="/login">Login</NavLink></li>
-            <li><NavLink to="/register">Register</NavLink></li>
+            <Authorization/>
           </ul>
           <div className="content">
             <Route exact path="/"/>
@@ -37,9 +46,9 @@ class App extends Component {
 
 export default connect(
   state => ({
-
+      user: state.users
   }),
   dispatch => ({
-    
+
   })
 )(App);
