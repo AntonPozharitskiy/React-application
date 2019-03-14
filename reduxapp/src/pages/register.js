@@ -55,7 +55,7 @@ class Register extends Component {
 }
 
 function mapStateToProps(state) {
-    const { registering } = state.registration;
+    const registering = state.registration;
     return {
         registering
     };

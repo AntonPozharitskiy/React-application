@@ -13,7 +13,7 @@ class App extends Component {
     render(){
       console.log(this.props)
         const Authorization = () =>{
-          if(this.props.alert.authenticated){
+          if(this.props.alert){
               return(
                   <li><NavLink to="/logout">Logout</NavLink></li>
               )
@@ -43,7 +43,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-    const { alert } = state;
+    const alert = state.authentication.authenticated;
     return {
         alert
     };

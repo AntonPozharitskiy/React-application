@@ -44,7 +44,7 @@ class Login extends Component {
 }
 
 function mapStateToProps(state) {
-    const { loggingIn } = state.authentication;
+    const loggingIn = state.authentication;
     return {
         loggingIn
     };
