@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
 
-import books from './books';
-import users from './users';
+import { authentication } from './authentication.reducer';
+import { registration } from './registration.reducer';
+import { alert } from './alert.reducer';
+import books from './books.reducer';
 
 export default combineReducers({
-  books,
-  users
+  authentication,
+  registration,
+  alert,
+  books
 })

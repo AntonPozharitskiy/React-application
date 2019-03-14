@@ -6,17 +6,15 @@ import {
   HashRouter
 } from "react-router-dom";
 
-import Login from './pages/login';
-import Register from './pages/register';
+import {Login} from './pages/login';
+import {Register} from './pages/register';
 
 class App extends Component {
     render(){
+      console.log(this.props)
         const Authorization = () =>{
-         let isAuthorize = sessionStorage.getItem('TokenInfo');
-         let userName = sessionStorage.getItem('username');
-          if(this.props.user.authenticated){
+          if(this.props.alert.authenticated){
               return(
-                  <li><NavLink to="/profile">{userName}</NavLink></li>,
                   <li><NavLink to="/logout">Logout</NavLink></li>
               )
           }
@@ -44,11 +42,12 @@ class App extends Component {
     }
 }
 
-export default connect(
-  state => ({
-      user: state.users
-  }),
-  dispatch => ({
+function mapStateToProps(state) {
+    const { alert } = state;
+    return {
+        alert
+    };
+}
 
-  })
-)(App);
+const connectedApp = connect(mapStateToProps)(App);
+export { connectedApp as App };
