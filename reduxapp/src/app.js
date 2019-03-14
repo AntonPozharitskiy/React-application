@@ -8,6 +8,7 @@ import {
 
 import {Login} from './pages/login';
 import {Register} from './pages/register';
+import Logout from './pages/logout';
 
 class App extends Component {
     render(){
@@ -35,6 +36,7 @@ class App extends Component {
             <Route exact path="/"/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
+            <Route path="/logout" component={Logout}/>
           </div>
         </div>
       </HashRouter>
