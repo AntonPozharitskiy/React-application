@@ -25,7 +25,7 @@ function login(email, password) {
 }
 
 function logout() {
-    return fetch(`${localhost}/Account/Logout`).then(handleResponse);
+    localStorage.removeItem('user');
 }
 
 function register(user) {

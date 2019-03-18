@@ -20,7 +20,7 @@ export function authentication(state = initialState, action) {
         error: action.error
       };
     case userConstants.LOGOUT:
-      return {};
+      return { authenticated: false };
     default:
       return state
   }

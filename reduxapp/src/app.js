@@ -5,18 +5,28 @@ import {
   NavLink,
   HashRouter
 } from "react-router-dom";
+import { PrivateRoute } from './routes';
 
 import {Login} from './pages/login';
 import {Register} from './pages/register';
-import Logout from './pages/logout';
+import {UserPage} from './pages/UserPage';
+import { userActions } from './actions';
 
 class App extends Component {
+    constructor(props){
+      super(props);
+      this.onLogoutClick = this.onLogoutClick.bind(this);
+    }
+    onLogoutClick(e){
+      e.preventDefault();
+      const {dispatch} = this.props;
+      dispatch(userActions.logout());
+    }
     render(){
-      console.log(this.props)
         const Authorization = () =>{
-          if(this.props.alert){
+          if(this.props.auth){
               return(
-                  <li><NavLink to="/logout">Logout</NavLink></li>
+                  <li><NavLink to="/logout" onClick={this.onLogoutClick}>Logout</NavLink></li>
               )
           }
           else {
@@ -36,7 +46,7 @@ class App extends Component {
             <Route exact path="/"/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
-            <Route path="/logout" component={Logout}/>
+            <PrivateRoute path="/profile" component={UserPage}/>
           </div>
         </div>
       </HashRouter>
@@ -45,9 +55,9 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-    const alert = state.authentication.authenticated;
+    const auth = state.authentication.authenticated;
     return {
-        alert
+        auth
     };
 }
 
