@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { history } from '../helpers';
 
 import { userActions } from '../actions';
 
@@ -11,16 +12,18 @@ class Login extends Component {
         Email: '',
         Password: ''
       }
-      this.onSubmit = this.onSubmit.bind(this);
+      //this.onSubmit = this.onSubmit.bind(this);
       this.handleChange = this.handleChange.bind(this);
     }
 
-    onSubmit(e) {
+    onSubmit = (e) => {
       e.preventDefault();
       const { Email, Password } = this.state;
       const { dispatch } = this.props;
       if (Email && Password) {
         dispatch(userActions.login(Email, Password));
+        this.props.history.push('/profile');
+
       }
     }
 

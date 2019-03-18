@@ -31,8 +31,11 @@ function login(username, password) {
 }
 
 function logout() {
+  return dispatch => {
+    dispatch(request());
     userService.logout();
-    return { type: userConstants.LOGOUT };
+  }
+  function request() { return { type: userConstants.LOGOUT }};
 }
 
 function register(user) {

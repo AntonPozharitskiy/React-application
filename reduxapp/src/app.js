@@ -39,14 +39,13 @@ class App extends Component {
         <HashRouter>
         <div>
           <ul className="header">
-            <li><NavLink exact to="/">Home</NavLink></li>
+            <li><NavLink to="/">Home</NavLink></li>
             <Authorization/>
           </ul>
           <div className="content">
-            <Route exact path="/"/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
-            <PrivateRoute path="/profile" component={UserPage}/>
+            <Route path="/profile" exact component={UserPage}/>
           </div>
         </div>
       </HashRouter>

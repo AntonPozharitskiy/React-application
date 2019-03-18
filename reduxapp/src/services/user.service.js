@@ -1,4 +1,5 @@
 import { authHeader } from '../helpers';
+import { history } from '../helpers';
 
 const localhost = "https://localhost:44311";
 
@@ -26,6 +27,7 @@ function login(email, password) {
 
 function logout() {
     localStorage.removeItem('user');
+    return fetch(`${localhost}/Account/Logout`).then(handleResponse);
 }
 
 function register(user) {
