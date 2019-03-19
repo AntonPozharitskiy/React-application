@@ -24,7 +24,7 @@ class App extends Component {
     }
     render(){
         const Authorization = () =>{
-          if(this.props.auth){
+          if(this.props.alert){
               return(
                   <li><NavLink to="/logout" onClick={this.onLogoutClick}>Logout</NavLink></li>
               )
@@ -39,13 +39,14 @@ class App extends Component {
         <HashRouter>
         <div>
           <ul className="header">
-            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink exact to="/">Home</NavLink></li>
             <Authorization/>
           </ul>
           <div className="content">
+            <PrivateRoute exact path="/"/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
-            <Route path="/profile" exact component={UserPage}/>
+            <PrivateRoute path="/profile" component={UserPage}/>
           </div>
         </div>
       </HashRouter>
@@ -54,9 +55,9 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-    const auth = state.authentication.authenticated;
+    const alert = state.authentication.authenticated;
     return {
-        auth
+        alert
     };
 }
 

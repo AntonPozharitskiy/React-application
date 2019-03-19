@@ -2,6 +2,7 @@
 import { authHeader } from '../helpers';
 
 
+
 const localhost = "https://localhost:44311";
 export const bookService = {
   create,
@@ -10,9 +11,18 @@ export const bookService = {
 }
 
 function create(book) {
+  let token = localStorage.getItem('user');
+  var tokenHeader;
+  if (token) {
+  tokenHeader = token.accessToken;
+  }
   const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + tokenHeader
+      },
       body: JSON.stringify(book)
   };
   return fetch(`${localhost}/Books/Create`,requestOptions).then(handleResponse);

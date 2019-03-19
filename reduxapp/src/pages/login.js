@@ -21,8 +21,13 @@ class Login extends Component {
       const { Email, Password } = this.state;
       const { dispatch } = this.props;
       if (Email && Password) {
+        try{
         dispatch(userActions.login(Email, Password));
         this.props.history.push('/profile');
+        }
+        catch(exception) {
+          console.log(exception)
+        }
 
       }
     }

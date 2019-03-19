@@ -5,10 +5,10 @@ class BookForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const title = this.getTitle.value;
-    const message =  this.getMessage.value;
+    const content =  this.getMessage.value;
     const data = {
       title,
-      message
+      content
     }
 
   this.props.dispatch(bookActions.create(data));
@@ -35,4 +35,9 @@ class BookForm extends Component {
     );
   }
 }
-export default connect()(BookForm);
+const mapStateToProps = (state) => {
+    return {
+        auth: state.authentication.user
+    }
+}
+export default connect(mapStateToProps)(BookForm);
