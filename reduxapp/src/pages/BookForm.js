@@ -15,6 +15,7 @@ class BookForm extends Component {
 
   this.getTitle.value = '';
   this.getMessage.value = '';
+  console.log(data)
   }
 
 
@@ -35,9 +36,5 @@ class BookForm extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-    return {
-        auth: state.authentication.user
-    }
-}
-export default connect(mapStateToProps)(BookForm);
+
+export default connect()(BookForm);

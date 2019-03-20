@@ -4,13 +4,14 @@ import Book from './Book';
 import {bookActions} from '../actions';
 class BookList extends Component {
   componentDidMount() {
-    this.props.dispatch(bookActions.getAll())
+    //this.props.dispatch(bookActions.getAll())
   }
   render() {
     return (
     <div>
       <h1>All Books</h1>
-      {this.props.books.map((post) => <Book key={post.id} post={post} />)}
+      {console.log('books props', this.props.books)}
+      {this.props.books.map((book) => <Book key={book.id} book={this.props.books} />)}
     </div>
     );
    }

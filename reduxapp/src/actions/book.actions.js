@@ -9,7 +9,7 @@ export const bookActions = {
 
 function create(book) {
   return dispatch => {
-    dispatch(request({ book }));
+    dispatch(request());
 
     bookService.create(book)
       .then(
@@ -21,7 +21,7 @@ function create(book) {
         }
       )
   }
-  function request(book) { return { type: bookConstants.CREATE_REQUEST, book } }
+  function request() { return { type: bookConstants.CREATE_REQUEST} }
   function success(newBook) { return { type: bookConstants.CREATE_SUCCESS, newBook } }
   function failure(error) { return { type: bookConstants.CREATE_FAILURE, error } }
 }

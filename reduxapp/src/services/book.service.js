@@ -37,11 +37,20 @@ function _delete(id) {
 }
 
 function getAll(){
+  var token = JSON.parse(localStorage.getItem('user'));
+  console.log(token)
+  if (token) {
+  var accessToken = token.accessToken;
   const requestOptions = {
     method: 'GET',
-    headers: authHeader()
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': 'Bearer ' + accessToken
+    }
   };
   return fetch(`${localhost}/Books/GetAll`, requestOptions).then(handleResponse);
+}
 }
 
 function handleResponse(response) {
