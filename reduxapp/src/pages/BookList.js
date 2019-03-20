@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Book from './Book';
 import {bookActions} from '../actions';
-
 class BookList extends Component {
   componentDidMount() {
-    this.props.dispatch(bookActions.getAll)
+    this.props.dispatch(bookActions.getAll())
   }
   render() {
     return (

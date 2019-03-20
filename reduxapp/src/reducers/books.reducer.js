@@ -3,7 +3,7 @@ import {bookActions} from '../actions';
 
 //let initialState = this.props.dispatch(bookActions.getAll());
 
-export default function books(state = [], action){
+export function books(state = {}, action){
   switch (action.type) {
     case bookConstants.CREATE_REQUEST:
       return {};

@@ -61,5 +61,4 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedRegisterPage = connect(mapStateToProps)(Register);
-export { connectedRegisterPage as Register };
+export default connect(mapStateToProps)(Register);

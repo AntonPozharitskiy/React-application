@@ -58,5 +58,4 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedLoginPage = connect(mapStateToProps)(Login);
-export { connectedLoginPage as Login };
+export default connect(mapStateToProps)(Login);

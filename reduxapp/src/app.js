@@ -7,9 +7,9 @@ import {
 } from "react-router-dom";
 import { PrivateRoute } from './routes';
 
-import {Login} from './pages/login';
-import {Register} from './pages/register';
-import {UserPage} from './pages/UserPage';
+import Login from './pages/login';
+import Register from './pages/register';
+import UserPage from './pages/UserPage';
 import { userActions } from './actions';
 
 class App extends Component {
@@ -43,7 +43,7 @@ class App extends Component {
             <Authorization/>
           </ul>
           <div className="content">
-            <PrivateRoute exact path="/"/>
+            <Route exact path="/"/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
             <PrivateRoute path="/profile" component={UserPage}/>
@@ -61,5 +61,4 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedApp = connect(mapStateToProps)(App);
-export { connectedApp as App };
+export default connect(mapStateToProps)(App);
