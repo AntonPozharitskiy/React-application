@@ -23,7 +23,6 @@ class Login extends Component {
       if (Email && Password) {
         try{
         dispatch(userActions.login(Email, Password));
-        this.props.history.push('/profile');
         }
         catch(exception) {
           console.log(exception)

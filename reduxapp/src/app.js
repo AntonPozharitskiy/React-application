@@ -6,6 +6,7 @@ import {
   HashRouter
 } from "react-router-dom";
 import { PrivateRoute } from './routes';
+import { AnonumousRoute } from './routes';
 
 import Login from './pages/login';
 import Register from './pages/register';
@@ -43,7 +44,7 @@ class App extends Component {
             <Authorization/>
           </ul>
           <div className="content">
-            <Route exact path="/"/>
+            <Route path="/login"/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
             <PrivateRoute path="/profile" component={UserPage}/>
