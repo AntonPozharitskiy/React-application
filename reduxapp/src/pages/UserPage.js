@@ -5,8 +5,10 @@ import BookList from './BookList';
 class UserPage extends Component {
   render() {
     return(
-        <div>
-          <h1>Welcome, {this.props.loggingIn.user.userEmail}!</h1>
+        <div className="App">
+        <div className="navbar">
+          <h1 className="center">Welcome, {this.props.loggingIn.user.userEmail}!</h1>
+          </div>
           <BookForm />
           <BookList />
         </div>

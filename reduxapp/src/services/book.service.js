@@ -5,12 +5,12 @@ const localhost = "https://localhost:44311";
 export const bookService = {
   create,
   getAll,
+  update,
   delete: _delete
 }
 
 function create(book) {
   var token = JSON.parse(localStorage.getItem('user'));
-  console.log(token)
   if (token) {
   var accessToken = token.accessToken;
   const requestOptions = {
@@ -27,13 +27,36 @@ function create(book) {
 
 }
 
-function _delete(id) {
+function update(book) {
+  var token = JSON.parse(localStorage.getItem('user'));
+  if (token) {
+  var accessToken = token.accessToken;
   const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + accessToken
+      },
+      body: JSON.stringify(book)
+  };
+  return fetch(`${localhost}/Books/Update`,requestOptions).then(handleResponse);
+  }
+}
+
+function _delete(id) {
+  var token = JSON.parse(localStorage.getItem('user'));
+  if (token) {
+  var accessToken = token.accessToken;
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': 'Bearer ' + accessToken},
       body: JSON.stringify(id)
   };
-  return fetch(`${localhost}/Books/Delete`,requestOptions).then(handleResponse);
+  return fetch(`${localhost}/Books/Delete/${id}`,requestOptions).then(handleResponse);
+  }
 }
 
 function getAll(){

@@ -8,22 +8,22 @@ class BookForm extends Component {
     const content =  this.getMessage.value;
     const data = {
       title,
-      content
+      content,
+      editing:false
     }
 
   this.props.dispatch(bookActions.create(data));
 
   this.getTitle.value = '';
   this.getMessage.value = '';
-  console.log(data)
   }
 
 
   render() {
     return (
-      <div>
-        <h1>Create Book</h1>
-          <form onSubmit={this.handleSubmit}>
+      <div className="post-container">
+        <h1 className="post_heading">Create Book</h1>
+          <form className="form" onSubmit={this.handleSubmit}>
              <input required type="text" ref={(input)=>this.getTitle = input}
              placeholder="Enter Post Title"/>
              <br /><br />

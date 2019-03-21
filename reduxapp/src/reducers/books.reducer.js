@@ -16,6 +16,31 @@ export function books(state = [], action){
       return [
         (action.error)
       ];
+    case bookConstants.DELETE_REQUEST:
+      return [...state];
+    case bookConstants.DELETE_SUCCESS:
+      return [
+      ...state.filter((book => book.id !== action.id))
+      ];
+    case bookConstants.DELETE_FAILURE:
+      return [(action.error)];
+    case bookConstants.EDIT_REQUEST:
+      return state.map((book)=>book.id === action.id ? { ...book, editing:!book.editing }:book);
+    case bookConstants.EDIT_SUCCESS:
+      return state.map((book)=>{
+        if(book.id === action.updatedBook.id) {
+          return {
+            ...book,
+            title: action.updatedBook.title,
+            content:action.updatedBook.content,
+            editing: !book.editing
+          }
+        } else return book;
+      })
+    case bookConstants.EDIT_FAILURE:
+      return [
+      (action.error)
+      ];
     default:
       return state;
   }

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Book from './Book';
 import {bookActions} from '../actions';
+import EditBook from './EditBook';
+
 class BookList extends Component {
   componentDidMount() {
     //this.props.dispatch(bookActions.getAll())
@@ -9,9 +11,13 @@ class BookList extends Component {
   render() {
     return (
     <div>
-      <h1>All Books</h1>
-      {console.log('books props', this.props.books)}
-      {this.props.books.map((book) => <Book key={book.id} book={this.props.books} />)}
+      <h1>All Books:</h1><br/><br/>
+      {this.props.books.map((book, index) => (
+                    <div key={index}>
+                        {book.editing ? <EditBook key={book.id} book={book} /> :
+                            <Book key={book.id} book={book} />}
+                    </div>
+                ))}
     </div>
     );
    }
