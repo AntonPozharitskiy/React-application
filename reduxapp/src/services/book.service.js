@@ -61,7 +61,6 @@ function _delete(id) {
 
 function getAll(){
   var token = JSON.parse(localStorage.getItem('user'));
-  console.log(token)
   if (token) {
   var accessToken = token.accessToken;
   const requestOptions = {

@@ -7,7 +7,7 @@ class UserPage extends Component {
     return(
         <div className="App">
         <div className="navbar">
-          <h1 className="center">Welcome, {this.props.loggingIn.user.userEmail}!</h1>
+          <span className="center">Welcome, {this.props.loggingIn.user.userEmail}!</span>
           </div>
           <BookForm />
           <BookList />

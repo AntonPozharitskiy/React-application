@@ -38,14 +38,16 @@ class Login extends Component {
 
     render(){
       return(
-        <form method="POST" onSubmit={this.onSubmit}>
+        <div className="post-container">
+        <form className="form" method="POST" onSubmit={this.onSubmit}>
             <label>Email</label> <br/>
-            <input type="email" name="Email" onChange={this.handleChange}/> <br/>
+            <input placeholder="Email" type="email" name="Email" onChange={this.handleChange}/> <br/>
             <label>Password</label> <br/>
-            <input type="password" name="Password" onChange={this.handleChange}/> <br/>
-            <input type="submit" value="Login"/> <br/>
+            <input placeholder="Password" type="password" name="Password" onChange={this.handleChange}/> <br/>
+            <input className="login" type="submit" value="Login"/> <br/>
             <Link to="/register" className="btn btn-link">Register as new user?</Link>
         </form>
+        </div>
       )
     }
 }

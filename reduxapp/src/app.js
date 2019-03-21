@@ -11,7 +11,7 @@ import Login from './pages/login';
 import Register from './pages/register';
 import UserPage from './pages/UserPage';
 import { userActions } from './actions';
-
+import './index.css'
 class App extends Component {
     constructor(props){
       super(props);
@@ -37,12 +37,12 @@ class App extends Component {
       }
       return(
         <HashRouter>
-        <div>
-          <ul className="header">
+        <div >
+          <ul className="navbar">
             <li><NavLink exact to="/">Home</NavLink></li>
             <Authorization/>
           </ul>
-          <div className="content">
+          <div>
             <PrivateRoute exact path="/" component={UserPage}/>
             <AnonumousRoute path="/login" component={Login}/>
             <Route path="/register" component={Register}/>

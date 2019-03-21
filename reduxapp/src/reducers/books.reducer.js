@@ -1,9 +1,11 @@
 import {bookConstants} from '../statuses';
 import {bookActions} from '../actions';
+import {bookService} from '../services';
 
-//let initialState = this.props.dispatch(bookActions.getAll());
+let userBooks = bookService.getAll();
+let initialState = (userBooks === null) ? [] : userBooks;
 
-export function books(state = [], action){
+export function books(state = initialState, action){
   switch (action.type) {
     case bookConstants.CREATE_REQUEST:
       return [...state];

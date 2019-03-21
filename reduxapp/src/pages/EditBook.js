@@ -19,8 +19,7 @@ handleEdit = (e) => {
 render() {
 return (
 <div onSubmit={this.handleEdit}>
-{console.log('PROPS: ', this.props)}
-  <form>
+  <form className="form">
     <input required type="text" ref={(input) => this.getTitle = input}
     defaultValue={this.props.book.title} placeholder="Enter Post Title" /><br /><br />
     <textarea required rows="5" ref={(input) => this.getMessage = input}

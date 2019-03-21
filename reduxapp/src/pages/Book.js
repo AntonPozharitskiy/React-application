@@ -19,7 +19,7 @@ class Book extends Component {
       <p className="post_message">{this.props.book.content}</p> <br/>
       <div className="control-buttons">
       <button className="edit" onClick={() => this.handleEditClick(this.props.book.id)}>Edit</button>
-      <button onClick={() => this.handleDeleteClick(this.props.book.id)}>Delete</button>
+      <button className="delete" onClick={() => this.handleDeleteClick(this.props.book.id)}>Delete</button>
       </div>
     </form>
     </div>

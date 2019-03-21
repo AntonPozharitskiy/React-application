@@ -11,7 +11,7 @@ class BookList extends Component {
   render() {
     return (
     <div>
-      <h1>All Books:</h1><br/><br/>
+      <h1 className="post_heading" >All Books:</h1><br/><br/>
       {this.props.books.map((book, index) => (
                     <div key={index}>
                         {book.editing ? <EditBook key={book.id} book={book} /> :
