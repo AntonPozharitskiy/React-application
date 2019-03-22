@@ -5,8 +5,8 @@ import {bookActions} from '../actions';
 import EditBook from './EditBook';
 
 class BookList extends Component {
-  componentDidMount() {
-    //this.props.dispatch(bookActions.getAll())
+  componentWillMount() {
+    this.props.dispatch(bookActions.getAll())
   }
   render() {
     return (

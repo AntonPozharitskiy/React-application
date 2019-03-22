@@ -2,10 +2,8 @@ import {bookConstants} from '../statuses';
 import {bookActions} from '../actions';
 import {bookService} from '../services';
 
-let userBooks = bookService.getAll();
-let initialState = (userBooks === null) ? [] : userBooks;
 
-export function books(state = initialState, action){
+export function books(state = [], action){
   switch (action.type) {
     case bookConstants.CREATE_REQUEST:
       return [...state];
@@ -42,6 +40,16 @@ export function books(state = initialState, action){
     case bookConstants.EDIT_FAILURE:
       return [
       (action.error)
+      ];
+    case bookConstants.GETALL_REQUEST:
+      return [...state];
+    case bookConstants.GETALL_SUCCESS:
+      return [
+        ...state.concat(action.books)
+      ];
+    case bookConstants.GETALL_FAILURE:
+      return [
+        (action.console.error)
       ];
     default:
       return state;

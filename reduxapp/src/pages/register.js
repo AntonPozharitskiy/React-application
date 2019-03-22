@@ -40,16 +40,18 @@ class Register extends Component {
 
   render(){
       return(
-        <form method="POST" onSubmit={this.onSubmit}>
+        <div className="post-container">
+        <form class="form" method="POST" onSubmit={this.onSubmit}>
             <label>Email</label> <br/>
             <input type="email" name="Email" onChange={this.handleChange}/> <br/>
             <label>Password</label> <br/>
             <input type="password" name="Password" onChange={this.handleChange}/> <br/>
             <label>Confirm password</label> <br/>
             <input type="password" name="Confirm password"/> <br/>
-            <input type="submit" value="Register"/> <br/>
+            <input className="login" type="submit" value="Register"/> <br/>
             <Link to="/login">Cancel</Link>
         </form>
+        </div>
       )
   }
 }
