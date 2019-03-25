@@ -21,6 +21,7 @@ function create(book) {
         },
         error => {
           dispatch(failure(error));
+          alert(error)
         }
       )
   }

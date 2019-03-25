@@ -36,5 +36,4 @@ class BookForm extends Component {
     );
   }
 }
-
 export default connect()(BookForm);

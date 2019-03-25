@@ -2,7 +2,6 @@ import {bookConstants} from '../statuses';
 import {bookActions} from '../actions';
 import {bookService} from '../services';
 
-
 export function books(state = [], action){
   switch (action.type) {
     case bookConstants.CREATE_REQUEST:
@@ -14,7 +13,7 @@ export function books(state = [], action){
       ];
     case bookConstants.CREATE_FAILURE:
       return [
-        (action.error)
+        ...state
       ];
     case bookConstants.DELETE_REQUEST:
       return [...state];
@@ -23,7 +22,7 @@ export function books(state = [], action){
       ...state.filter((book => book.id !== action.id))
       ];
     case bookConstants.DELETE_FAILURE:
-      return [(action.error)];
+      return [...state];
     case bookConstants.EDIT_REQUEST:
       return state.map((book)=>book.id === action.id ? { ...book, editing:!book.editing }:book);
     case bookConstants.EDIT_SUCCESS:
@@ -42,7 +41,7 @@ export function books(state = [], action){
       (action.error)
       ];
     case bookConstants.GETALL_REQUEST:
-      return [...state];
+      return [];
     case bookConstants.GETALL_SUCCESS:
       return [
         ...state.concat(action.books)

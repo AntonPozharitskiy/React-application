@@ -37,7 +37,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${localhost}/Account/Register`, requestOptions).then(handleResponse);
+    return fetch(`${localhost}/Account/Register`, requestOptions).then(handleResponse)
 }
 
 function handleResponse(response) {

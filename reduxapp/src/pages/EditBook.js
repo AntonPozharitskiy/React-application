@@ -9,10 +9,14 @@ handleEdit = (e) => {
   const id = this.props.book.id;
   const title = this.getTitle.value;
   const content = this.getMessage.value;
+  const authorid = this.props.book.authorId;
+  const dateOfRelease = this.props.book.dateOfRelease;
   const data = {
     id,
     title,
-    content
+    content,
+    authorid,
+    dateOfRelease
   }
   this.props.dispatch(bookActions.update(data))
 }
@@ -30,5 +34,4 @@ return (
 );
 }
 }
-
 export default connect()(EditBook);

@@ -15,3 +15,10 @@ export const AnonumousRoute = ({ component: Component, ...rest }) => (
             : <Component {...props} />
     )} />
 )
+export const RegisterRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={props => (
+        localStorage.getItem('register')
+            ? <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+            : <Component {...props} />
+    )} />
+)

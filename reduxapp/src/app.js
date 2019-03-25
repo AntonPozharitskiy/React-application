@@ -5,7 +5,7 @@ import {
   NavLink,
   HashRouter
 } from "react-router-dom";
-import { PrivateRoute, AnonumousRoute } from './routes';
+import { PrivateRoute, AnonumousRoute, RegisterRoute } from './routes';
 
 import Login from './pages/login';
 import Register from './pages/register';
