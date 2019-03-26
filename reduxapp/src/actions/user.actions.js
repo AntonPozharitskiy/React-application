@@ -45,7 +45,8 @@ function register(user) {
             .then(
                 user => {
                     dispatch(success(user));
-                    dispatch(alertActions.success('Registration successful'));
+
+                    alert("Registration confirmed successfully");
                 },
                 error => {
                     dispatch(failure(error));

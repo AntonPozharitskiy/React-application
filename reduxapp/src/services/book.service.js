@@ -84,6 +84,9 @@ function handleResponse(response) {
             }
 
             const error = (data && data.message) || response.statusText;
+            if(data.errors.Title) alert(data.errors.Title);
+            if(data.errors.Content) alert (data.errors.Content);
+            if(data.errors.Password) alert (data.errors.Password);
             return Promise.reject(error);
         }
 
