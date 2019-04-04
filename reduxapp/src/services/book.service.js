@@ -1,7 +1,7 @@
 
 import { authHeader } from '../helpers';
 
-const localhost = "https://azurebookapp.azurewebsites.net";
+const localhost = "https://localhost:44311";
 export const bookService = {
   create,
   getAll,

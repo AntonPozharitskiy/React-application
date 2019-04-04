@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from '../helpers';
 
+import { Formik } from 'formik'
 import { userActions } from '../actions';
 
 class Login extends Component {
@@ -12,42 +13,69 @@ class Login extends Component {
         Email: '',
         Password: ''
       }
-      //this.onSubmit = this.onSubmit.bind(this);
-      this.handleChange = this.handleChange.bind(this);
     }
-
-    onSubmit = (e) => {
-      e.preventDefault();
-      const { Email, Password } = this.state;
-      const { dispatch } = this.props;
-      if (Email && Password) {
-        try{
-        dispatch(userActions.login(Email, Password));
-        }
-        catch(exception) {
-          console.log(exception)
-        }
-
-      }
-    }
-
-    handleChange(e) {
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
-    }
-
     render(){
       return(
         <div className="post-container">
-        <form className="form" method="POST" onSubmit={this.onSubmit}>
-            <label>Email</label> <br/>
-            <input placeholder="Email" type="email" name="Email" onChange={this.handleChange}/> <br/>
-            <label>Password</label> <br/>
-            <input placeholder="Password" type="password" name="Password" onChange={this.handleChange}/> <br/>
-            <input className="login" type="submit" value="Login"/> <br/>
-            <Link to="/register" className="btn btn-link">Register as new user?</Link>
+    <Formik
+      initialValues={{ email: '', password: '' }}
+      validate={values => {
+        let errors = {};
+        if (!values.email) {
+          errors.email = 'Email is required';
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = 'Invalid email address';
+        } else if(!values.password) {
+          errors.password = 'Password is required'
+        }
+        return errors;
+      }}
+      onSubmit={(values, { setSubmitting }) => {
+        this.props.dispatch(userActions.login(values.email, values.password))
+        setSubmitting(false)
+      }}
+    >
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting
+      }) => (
+        <form className="form" onSubmit={handleSubmit}>
+        <label>Email</label> <br/>
+          <input
+            type="email"
+            name="email"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.email}
+          />
+          <br/>
+          {errors.email && touched.email && errors.email}
+          <br/>
+          <label>Password</label> <br/>
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.password}
+          />
+          <br/>
+          {errors.password && touched.password && errors.password}
+          <br/>
+          <button type="submit" disabled={isSubmitting}>
+            Login
+          </button>
         </form>
-        </div>
+      )}
+    </Formik>
+  </div>
       )
     }
 }
